@@ -1,7 +1,7 @@
 ###################################################################
 #Push external files to the run log database
 #Station Number    Run    Start    End    Run Type    antennaIceA#I1    antennaIceB#I1    opIceA#I1    opIceB#I1    attIceA#I1    attIceB#I1    Run_Start_Type    Run_End_Type    enableExtTrigger#I1    Quality    aComment    uComment
-#run as python pushDataBaseTest.py ARA01 /home/ypan/doc/logs/a1_2018_log.txt
+#run as python pushDataBaseSqlite.py ARA01 /home/ypan/doc/logs/a1_2018_log.txt
 #Yue
 ###################################################################
 import sys

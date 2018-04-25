@@ -1,7 +1,7 @@
 ###################################################################
 #Record processed runs information
 #Station Number    Run    Start    End    Run Type    antennaIceA#I1    antennaIceB#I1    opIceA#I1    opIceB#I1    attIceA#I1    attIceB#I1    Run_Start_Type    Run_End_Type    enableExtTrigger#I1    Quality    aComment    uComment
-#run as python runDataBaseTest2.py 10493 ARA01 2018 FILTERED/CALIBRATION/PEDESTAL/HOUSEKEEPING /home/ypan/doc/temp/run_009503/logs/
+#run as python runDataBaseSqlite.py 10493 ARA01 2018 FILTERED/CALIBRATION/PEDESTAL /home/ypan/doc/temp/run_009503/logs/
 #Yue
 ###################################################################
 import re

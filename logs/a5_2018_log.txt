@@ -1,3 +1,4 @@
+#run_num        username        run_quality     user_comment
 1939	brianclark	other	Att Scan 1, Att 0; Old channel mapping
 1940	brianclark	other	Att Scan 1, Att 4; Old channel mapping
 1941	brianclark	other	Att Scan 1, Att 8; Old channel mapping

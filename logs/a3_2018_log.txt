@@ -1,3 +1,4 @@
+#run_num        username        run_quality     user_comment
 1641	brianclark	spicecore	See DocDB 1589 for depth vs time data
 1642	brianclark	spicecore	See DocDB 1589 for depth vs time data
 1056	brianclark	roofpulse	Vpol, ICL pulser, pointed at WT3

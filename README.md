@@ -16,3 +16,8 @@ python pushDataBaseSqlite.py ${STATION} ${PATH_TO_THE_EXTERNAL_FILE}.
 For example, python pushDataBaseSqlite.py ARA01 /home/ypan/doc/logs/a1_2018_log.txt
 
 A sample database can be found in /database.
+
+##Using the DataBase
+For coders, we recommend looking at `access_functions` for how to call information out of the database through the command line and in scripts.
+
+If you want to browse the database in an "Excel" like setting, we recommend downloading [DB Broswer for SQLite](http://sqlitebrowser.org/), which works for PC, Mac, and Linux. This GUI interface is  probably more robust than opening the large `.txt` files are grepping/searching.

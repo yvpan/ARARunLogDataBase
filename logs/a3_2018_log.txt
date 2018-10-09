@@ -13,3 +13,12 @@ run_num	username	run_quality	user_comment
 10060	brianclark	roofpulse	Hpol, ICL pulser, pointed at A2/A5
 10061	brianclark	roofpulse	Hpol, ICL pulser, pulser on 23:20:37 Jan 21 UTC, pointed at A2/A5
 11335	brianclark	deeppulse	See DocDB 1667; pulse date is June 25 2018; hole 22 shallow 21:28:00-21:43:00 UTC; hole shallow 22 22:03:00-21:18:00 UTC; hole 1 shallow 22:23:42-22:53:42 UTC
+12291 yuepan      bad       In glitch mode
+12292 yuepan      bad       In glitch mode
+12293 yuepan      bad       In glitch mode
+12294 yuepan      bad       In glitch mode
+12295 yuepan      bad       In glitch mode
+12296 yuepan      bad       In glitch mode
+12297 yuepan      bad       In glitch mode
+12298 yuepan      bad       In glitch mode
+12300 yuepan      bad       In glitch mode

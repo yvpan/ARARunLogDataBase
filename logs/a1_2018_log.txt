@@ -1,4 +1,3 @@
-run_num	username	run_quality	user_comment
 10166	brianclark	spicecore	See DocDB 1589 for depth vs time data
 10167	brianclark	spicecore	See DocDB 1589 for depth vs time data
 10169	brianclark	spicecore	See DocDB 1589 for depth vs time data

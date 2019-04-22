@@ -11,7 +11,7 @@ For example, `python runDataBaseText.py 10493 ARA01 2018 FILTERED /home/ypan/doc
 
 runDataBaseBackwards.sh is used to get previous run information to an sqlite database.
 
-pushDataBaseSqlite.py is used to add additional information from an external file. Some sample external files can be found in /logs. Each column should be seperated by tab. Run as:
+pushDataBaseSqlite.py is used to add additional information from an external file. An external file should include: run_num, username, run_quality and user_commentSome. Each column should be seperated by tab. Sample external files can be found in /logs. Run as:
 `python pushDataBaseSqlite.py ${STATION} ${PATH_TO_THE_EXTERNAL_FILE}`.
 For example, `python pushDataBaseSqlite.py ARA01 /home/ypan/doc/logs/a1_2018_log.txt`.
 

@@ -2,12 +2,11 @@
 Manually altered calibration run files.
 
 ## Organization
-- The repository is organized with a `xls_source` directory and the logs themselves, e.g. `a1_2018_log.txt`.
+- The repository is organized with a `xls_source` directory and the logs themselves, e.g. `a1_log.txt`.
 - `xls_source` contains all of the `.xls` files which are edited to produce the log files
 
 ## Recommended Usage
-- The easiest way to use this is to alter the `.xls` files for every station; this allows for easy cell manipulation
-- Then you should export the file to the `.txt` format with tab separated values for import into the SQL system
+- You should fill in the `.txt` format with tab separated values for import into the SQL system
 
 ## File Content
 - The files contain four columns:

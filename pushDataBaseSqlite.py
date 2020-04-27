@@ -11,6 +11,7 @@ from pylab import *
 outDir = "/data/exp/ARA/2013/monitoring/aware/output/db/"
 station = sys.argv[1]
 inDir = sys.argv[2]
+print("###UPDATING: " + station + "###")
 
 inFile = genfromtxt(inDir, dtype = None, delimiter = "\t")
 run = [item[0] for item in inFile]

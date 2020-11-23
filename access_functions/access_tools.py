@@ -33,9 +33,9 @@ def select_all_by_quality(conn,station,quality):
 		format(tn=station,qu=quality))
 	rows = cur.fetchall()
 	num_runs = len(rows)
-	print "Found %d runs"%num_runs
+	print("Found {} runs".format(num_runs))
 	for row in rows:
-		print "	Run: ",(row[0])
+		print("	Run: ", (row[0]))
 
 def is_run_good(conn,station,run):
 
@@ -56,5 +56,5 @@ def is_run_good(conn,station,run):
 		if(answer[0]=='Normal'): val=True
 		return val
 	except:
-		print "Warning! Query Failed!"
+		print("Warning! Query Failed!")
 		return 'undefined'

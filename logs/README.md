@@ -1,10 +1,6 @@
 # logs
 Manually altered calibration run files.
 
-## Organization
-- The repository is organized with a `xls_source` directory and the logs themselves, e.g. `a1_log.txt`.
-- `xls_source` contains all of the `.xls` files which are edited to produce the log files
-
 ## Recommended Usage
 - You should fill in the `.txt` format with tab separated values for import into the SQL system
 

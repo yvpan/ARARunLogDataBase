@@ -31,6 +31,7 @@
 12690	yuepan	bad	In glitch mode
 12691	yuepan	bad	In glitch mode
 12692	yuepan	bad	In glitch mode
+12885	myoungchulkim	deeppulse	Don't have a detail record
 13000	myoungchulkim	spicecore	See DocDB 1784, 2018-12-23 to 2018-12-31
 13001	myoungchulkim	spicecore	See DocDB 1784, 2018-12-23 to 2018-12-31
 13002	myoungchulkim	spicecore	See DocDB 1784, 2018-12-23 to 2018-12-31

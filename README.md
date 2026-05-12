@@ -1,71 +1,225 @@
 # ARA Run Log Database
 
-A relational database and automated monitoring framework for the Askaryan Radio Array (ARA) experiment at the South Pole.
+A relational database and automated run-monitoring framework for the **Askaryan Radio Array (ARA)** experiment at the South Pole.
 
-This project was developed to manage operational run logs, automate metadata tracking, and support real-time monitoring for large-scale ultra-high-energy neutrino detector operations.
+This project manages detector run logs, operational metadata, and run-quality information through an automated SQLite-based ingestion pipeline and query interface.
+
+The system was developed during research with the ARA collaboration at the University of Delaware to support real-time detector operations and downstream physics analyses.
 
 ---
 
 ## Overview
 
-The Askaryan Radio Array (ARA) is a radio-based neutrino detector designed to observe ultra-high-energy neutrinos in Antarctic ice.
+The Askaryan Radio Array (ARA) is an ultra-high-energy neutrino detector embedded in Antarctic ice.
 
-Operating a distributed detector system in extreme environments generates large volumes of run metadata, detector-status logs, calibration records, and operational diagnostics. This project provides:
+Detector operation generates large volumes of run metadata, configuration files, calibration records, and quality annotations that must be systematically tracked for:
 
-- A structured relational database for detector run logs
-- Automated ingestion and update pipelines
-- Real-time monitoring support
-- Query interfaces for operational analysis
-- Scalable metadata management for long-term detector operations
+- Detector monitoring
+- Data-quality validation
+- Physics analysis selection
+- Calibration bookkeeping
+- Operational debugging
 
-The framework was integrated into the ARA data-processing workflow at the University of Delaware.
+This repository provides an automated framework to:
+
+- Parse ARA run logs
+- Extract detector configuration metadata
+- Store run information in a relational database
+- Track run quality
+- Query analysis-ready runs
+- Automate database updates
 
 ---
 
 ## Key Features
 
-- Relational database schema for detector operations
-- Automated parsing and ingestion of run logs
-- Real-time update pipeline
-- SQL-based querying and filtering
-- Monitoring support for detector health and data quality
-- Automated synchronization with experimental data flow
-- Lightweight and extensible architecture
+### Automated Run Metadata Extraction
+The pipeline parses ARA run files to automatically extract:
 
----
+- Run start/end timestamps
+- Run type
+- Trigger settings
+- Detector configuration parameters
+- Antenna settings
+- Operational status
+- Run comments
+- Quality labels
 
-## Database Architecture
-
-The system is built around a normalized relational schema consisting of:
-
-- Run metadata tables
-- Detector status tables
-- Trigger/event logging tables
-- Calibration information tables
-- Monitoring and operational state records
-
-The database was designed to support:
+### SQLite Relational Database
+Run information is stored in a structured SQLite database for:
 
 - Fast querying
 - Historical traceability
-- Data consistency
-- Automated updates
-- Operational monitoring workflows
+- Analysis reproducibility
+- Consistent run bookkeeping
+
+### Analysis-Oriented Query Interface
+The repository includes accessor functions for:
+
+- Selecting good runs
+- Filtering by run quality
+- Detector/station-level querying
+- Analysis-specific run selection
+
+### Real-Time Update Workflow
+Database updates can be automated during detector operation using shell scripts and ingestion utilities.
 
 ---
 
-## Data Pipeline
+## Repository Structure
 
-The pipeline performs the following tasks:
+```text
+ARARunLogDataBase/
+│
+├── database/
+│   ├── runDataBase2018.sqlite
+│   ├── runDataBase2018.txt
+│   └── runDataBaseEmpty.sqlite
+│
+├── logs/
+│   ├── a1_log.txt
+│   ├── a2_log.txt
+│   ├── a3_log.txt
+│   ├── a4_log.txt
+│   └── a5_log.txt
+│
+├── access_functions/
+│   ├── access_tools.py
+│   ├── example1.py
+│   ├── example2.py
+│   └── README.md
+│
+├── runDataBaseSqlite.py
+├── runDataBaseText.py
+├── pushDataBaseSqlite.py
+├── pushDataBaseSqlite.sh
+├── runDataBaseBackwards.sh
+└── README.md
+```
 
-1. Parse raw detector run logs
-2. Extract operational metadata
-3. Validate and normalize records
-4. Insert/update SQL tables
-5. Generate monitoring summaries
-6. Synchronize with downstream analysis workflows
+---
 
-The framework supports continuous automated updates during detector operation.
+## Database Pipeline
+
+The ingestion workflow performs:
+
+1. Parse detector run logs
+2. Read run configuration files
+3. Extract detector metadata
+4. Identify run start/end conditions
+5. Record trigger and operational settings
+6. Store structured outputs in SQLite
+7. Enable downstream querying for analyses
+
+The system automatically reads files such as:
+
+- `runStart.runXXXXXX.dat`
+- `runStop.runXXXXXX.dat`
+- `configFile.runXXXXXX.dat`
+
+and extracts operational metadata directly into the database.
+
+---
+
+## Recorded Metadata
+
+The database stores fields including:
+
+| Category | Example Information |
+|----------|---------------------|
+| Run Information | station number, run ID, run type |
+| Timing | start/end timestamps |
+| Detector Configuration | antenna settings, attenuation settings |
+| Trigger Configuration | external trigger status |
+| Operational Status | run start/end type |
+| Data Quality | quality flags |
+| Comments | automated and user comments |
+
+This enables consistent detector bookkeeping across years of operations.
+
+---
+
+## Accessor Functions
+
+The repository includes a lightweight query API in:
+
+```python
+access_functions/access_tools.py
+```
+
+which simplifies database access for analysis workflows.
+
+### Example 1: Check Run Quality
+
+Determine whether a run is suitable for a diffuse neutrino analysis.
+
+```bash
+python example1.py ARA04 3277
+```
+
+### Example 2: Query Runs by Quality
+
+Find all runs with a given quality label.
+
+```bash
+python example2.py ARA04 roofpulse
+```
+
+Example quality categories include:
+
+- `good`
+- `roofpulse`
+- `calibration`
+- detector-specific quality flags
+
+---
+
+## Usage
+
+### Populate SQLite Database
+
+Run the ingestion script:
+
+```bash
+python runDataBaseSqlite.py \
+10493 ARA01 2018 FILTERED \
+/path/to/run/logs/
+```
+
+Arguments:
+
+```text
+runDataBaseSqlite.py
+    [run_number]
+    [station]
+    [year]
+    [run_type]
+    [input_directory]
+```
+
+Example:
+
+```bash
+python runDataBaseSqlite.py \
+10493 ARA01 2018 CALIBRATION \
+/data/run_009503/logs/
+```
+
+### Push Database Updates
+
+Automated update utilities are included:
+
+```bash
+bash pushDataBaseSqlite.sh
+```
+
+### Backward Processing
+
+Historical runs can be processed using:
+
+```bash
+bash runDataBaseBackwards.sh
+```
 
 ---
 
@@ -76,68 +230,31 @@ The framework supports continuous automated updates during detector operation.
 - SQL
 - Bash
 
-### Tools & Infrastructure
-- Linux
-- Git
-- Relational database systems
-- Automated shell workflows
+### Storage
+- SQLite
 
----
-
-## Example Applications
-
-- Detector operation tracking
-- Run-quality validation
-- Experiment monitoring
-- Data bookkeeping
-- Automated report generation
-- Experimental debugging support
-
----
-
-## Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/yvpan/ARARunLogDataBase.git
-cd ARARunLogDataBase
-```
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-Configure database credentials and environment variables before running the pipeline.
-
----
-
-## Usage
-
-Run the ingestion pipeline:
-
-```bash
-python main.py
-```
-
-Example SQL query:
-
-```sql
-SELECT *
-FROM run_log
-WHERE station_id = 2
-AND run_status = 'GOOD';
-```
+### Techniques
+- Relational database design
+- Log parsing
+- Automated metadata extraction
+- Experimental monitoring
+- Detector operations bookkeeping
 
 ---
 
 ## Research Context
 
-This work was developed as part of the Askaryan Radio Array (ARA) collaboration during PhD research at the University of Delaware.
+This framework was developed as part of the **Askaryan Radio Array (ARA)** collaboration during PhD research at the University of Delaware.
 
-The project supported operational monitoring and data management for ultra-high-energy neutrino detection research conducted in Antarctica.
+The database supported:
+
+- Real-time detector monitoring
+- Experiment operations
+- Run-quality tracking
+- Physics-analysis data selection
+- Long-term detector bookkeeping
+
+for ultra-high-energy neutrino research conducted in Antarctica.
 
 ---
 
@@ -146,8 +263,21 @@ The project supported operational monitoring and data management for ultra-high-
 Potential future extensions include:
 
 - Web-based monitoring dashboard
-- Distributed database support
-- Streaming log ingestion
-- Visualization tools
+- PostgreSQL migration for scalability
+- REST API for querying
+- Detector-status visualization
 - Automated anomaly detection
 - Cloud deployment support
+- Run-quality classification models
+
+---
+
+## Citation
+
+If you use this repository for research or analysis, please cite relevant ARA collaboration publications.
+
+---
+
+## License
+
+This repository is intended for research and educational purposes.
